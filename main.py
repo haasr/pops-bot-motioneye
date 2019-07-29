@@ -72,7 +72,7 @@ def main():
                         send_reply(reply, message)
                         break
 
-                    # Key words to get info from MotionEye camera; popcam_calls handles these. 
+                    # Key words to get info from MotionEye camera. 
                     elif ('ALERT!!' in message['text']):
                         send_snap_reply(message)
                         break
