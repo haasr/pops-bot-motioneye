@@ -53,7 +53,7 @@ def main():
 
     while True:
 
-        print('\n####################\n# Bot: Popsicle \n# Group: Dev Testing'
+        print('\n####################\n# Bot: Pops \n# Group: Dev Testing'
                 + '\n# Status: Listening\n ###################')
     
         response = requests.get('https://api.groupme.com/v3/groups/' + GROUP_ID 
