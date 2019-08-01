@@ -14,6 +14,10 @@ ACCESS_TOKEN = 'INSERT ACCESS TOKEN HERE'
 POST_URL = 'https://api.groupme.com/v3/bots/post'
 UPLOADS_URL = 'INSERT DROPBOX OR DRIVE URL TO UPLOADS HERE'
 MOTIONEYE_IP = 'INSERT IP ADDRESS OF MOTIONEYE CAM HERE'
+THIS_DEVICE_IP = 'INSERT IP ADDRESS OF THIS DEVICE' # Should be a static IP address.
+# I run Apache server on my Pi. The index is in '/var/www/html'. You may need to modify the directory
+# to give you write permission if you don't already have it. I had to use 'chown' to modify my directory.
+INDEX_LOCATION = 'INSERT PATH WHERE SERVER INDEX PAGE IS STORED' # Must be on the machine you plan to run this program.
 
 request_params = { 'token': ACCESS_TOKEN }
 
@@ -38,8 +42,7 @@ def send_snap_reply(message):
     
     # Location of apache server's index page and dir where images are stored
     # so they can be accessed by a local url.
-    image_dir = '/var/www/html'
-    test = os.listdir(image_dir)
+    test = os.listdir(INDEX_LOCATION)
 
     for item in test:
         # Remove all old jpegs from previous downloads.
@@ -55,7 +58,7 @@ def send_snap_reply(message):
     f.close()
 
     post_params = { 'bot_id': BOT_ID, 'text': '' }
-    post_data = {'text': 'current.jpeg', 'picture_url': 'http://' + MOTIONEYE_IP + '/picture/1/current/'}
+    post_data = {'text': 'current.jpeg', 'picture_url': ('http://' + THIS_DEVICE_IP + filename)}
     req = requests.post(POST_URL, params = post_params, data = post_data)
 
     request_params['since_id'] = message['id']
