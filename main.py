@@ -58,7 +58,7 @@ def send_snap_reply(message):
     f.close()
 
     post_params = { 'bot_id': BOT_ID, 'text': '' }
-    post_data = {'text': 'current.jpeg', 'picture_url': ('http://' + THIS_DEVICE_IP + filename)}
+    post_data = {'text': 'current.jpeg', 'picture_url': ('http://' + THIS_DEVICE_IP + '/' + filename)}
     req = requests.post(POST_URL, params = post_params, data = post_data)
 
     request_params['since_id'] = message['id']
