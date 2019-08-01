@@ -5,7 +5,7 @@ My code is based off of a tutorial from http://sweb.uky.edu/~jtba252/index.php/2
 
 Updates:
 
-  - Added recognition to phrases such as "what is the weather" or "tell me the forecast in Brooklyn, New York" and a weather utility module to handle queries for weather information. and return appropriate weather data.
+  - Added recognition to phrases such as "what is the weather" or "tell me the forecast in Brooklyn, New York" and a weather utility module to handle queries for weather information and return appropriate weather data.
   
   - Added functionality to provide proverbs/wisdom when requested to the bot.
   
