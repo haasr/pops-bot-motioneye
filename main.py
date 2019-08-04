@@ -15,9 +15,9 @@ POST_URL = 'https://api.groupme.com/v3/bots/post'
 UPLOADS_URL = 'INSERT DROPBOX OR DRIVE URL TO UPLOADS HERE'
 MOTIONEYE_IP = 'INSERT IP ADDRESS OF MOTIONEYE CAM HERE'
 THIS_DEVICE_IP = 'INSERT IP ADDRESS OF THIS DEVICE' # Should be a static IP address.
-# I run Apache server on my Pi. The index is in '/var/www/html'. You may need to modify the directory
-# to give you write permission if you don't already have it. I had to use 'chown' to modify my directory.
 INDEX_LOCATION = 'INSERT PATH WHERE SERVER INDEX PAGE IS STORED' # Must be on the machine you plan to run this program.
+# I run Apache server on my Pi. The index is in '/var/www/html'. You may need to modify the directory
+# to give you write permission if you don't already have it.
 
 request_params = { 'token': ACCESS_TOKEN }
 
@@ -37,10 +37,10 @@ def send_snap_reply(message):
     # MotionEye cam but as long as the same URL was used, it posted the
     # same image. Solution was set up an apache server on my RPi (hosting
     # the bot) to download the image from the link above to a random name 
-    # in the html root dir (to make URL unique) and pass that to GroupMe
+    # in the index root dir (to make URL unique) and pass that to GroupMe
     # in POST request.
     
-    # Location of apache server's index page and dir where images are stored
+    # Location of web server's index page and dir where images are stored
     # so they can be accessed by a local url.
     test = os.listdir(INDEX_LOCATION)
 
@@ -51,7 +51,7 @@ def send_snap_reply(message):
 
     # Goal here is basically to create an image name that will never be used again.
     # Workaround for groupme api caching first image from url and never sending
-    # new image even after conent in 'current.jpeg', for example, had changed.
+    # new image even after content in 'current.jpeg', for example, had changed.
     filename = str(random.randint(0, 90000000)) + str(random.randint(0, 90000000)) + '.jpeg'
     f = open('/var/www/html/' + filename, 'wb')
     f.write(requests.get('http://192.168.1.104/picture/1/current/').content)
