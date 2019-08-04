@@ -1,5 +1,5 @@
 # pops-bot-motioneye
-A rudimentary Python program which utilizes a GroupMe bot to make basic conversation and provide functionality to communicate with a MotionEyeOS camera on LAN by communicating with the GroupMe API and MotionEye host through GET and POST requests using the Python requests library. My cam is set up to monitor my pet chicken --Popcorn-- and the responses returned from the GroupMe bot are meant to immitate her personality.
+A rudimentary Python program which utilizes a GroupMe bot to make basic conversation and provide functionality from a MotionEyeOS camera on LAN by communicating with the GroupMe API and MotionEye host through GET and POST requests using the Python requests library. My cam is set up to monitor my pet chicken --Popcorn-- and the responses returned from the GroupMe bot are meant to immitate her personality.
 
 My code is based off of a tutorial from http://sweb.uky.edu/~jtba252/index.php/2017/09/13/how-to-write-a-groupme-bot-using-python/ which I greatly appreciate.
 
@@ -24,11 +24,13 @@ Requirements:
   
   - A MotionEyeOS camera connected on the same LAN as the machine running the program.
   
-  - A web server needs to be running on the same machine that you are running the program to make use of the "send_snap_reply" function in "main.py". I use an Apache server on my Raspberry Pi. If you don't want to set up a web server, simply comment or delete out the code in "main.py" that searches for the word "SNAP" in the group and calls the "send_snap_reply" function
+  - A web server needs to be running on the same machine that you are running the program to make use of the "send_snap_reply" function in "main.py". I use an Apache server on my Raspberry Pi. If you don't want to set up a web server, simply comment or delete out lines 33-66 and lines 125-131 in "main.py".
 
+Setup: 
 
-Setup:
-  After creating a GroupMe bot, open the "main.py" file in a text editor and insert your bot ID, group ID, access token, uploads url, the IP address of your machine which will run the program (a static IP is strongly recommended), the directory on your machine where the index page of your web server is located, and the IP address to the MotionEye camera. The the program is ready to run by executing "main.py".
+After creating a GroupMe bot, open the "main.py" file in a text editor and insert your bot ID, group ID, access token, *uploads URL*, the IP address of your machine which will run the program (you need to use a static IP), the directory on your machine where the index page of your web server is located, and the IP address to the MotionEye camera. The the program is ready to run by executing "main.py".
+
+*There is an option in the MotionEyeOS admin settings to have footage uploaded to a Google Drive or Dropbox location. The purose of the uploads URL is so when a user says "UPLOADS" in the group, the bot returns a hyperlink to this Drive or Dropbox location. If you don't want this feature, you can simply delete it out of "main.py" by removing lines 15, 137, 138, and 139.*
   
 Messaging the Pops Bot in your GroupMe group:
 
