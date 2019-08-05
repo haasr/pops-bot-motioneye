@@ -28,9 +28,9 @@ Requirements:
 
 Setup: 
 
-After creating a GroupMe bot, open the "main.py" file in a text editor and insert your bot ID, group ID, access token, *uploads URL*, the IP address of your machine which will run the program (you need to use a static IP if using the web server), the directory on your machine where the index page of your web server is located (again, if your are using the web server), and the IP address to the MotionEye camera. Then the program is ready to run by executing "main.py".
+After creating a GroupMe bot, open the "main.py" file in a text editor and insert your bot ID, group ID, access token, * *uploads URL*, the IP address of your machine which will run the program (you need to use a static IP if using the web server), the directory on your machine where the index page of your web server is located (again, if you are using the web server), and the IP address to the MotionEye camera. Then the program is ready to run by executing "main.py".
 
-*There is an option in the MotionEyeOS admin settings to have footage uploaded to a Google Drive or Dropbox location. The purose of the uploads URL is so when a user says "UPLOADS" in the group, the bot returns a hyperlink to this Drive or Dropbox location. If you don't want this feature, you can simply delete it out of "main.py" by removing lines 15, 137, 138, and 139.*
+* *There is an option in the MotionEyeOS admin settings to have footage uploaded to a Google Drive or Dropbox location. The purose of the uploads URL is so when a user says "UPLOADS" in the group, the bot returns a hyperlink to this Drive or Dropbox location. If you don't want this feature, you can simply delete it out of "main.py" by removing lines 15, 137, 138, and 139.*
   
 Messaging the Pops Bot in your GroupMe group:
 
