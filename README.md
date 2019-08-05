@@ -37,32 +37,34 @@ Messaging the Pops Bot in your GroupMe group:
 
   * PopCam Utilities
   
-    SNAP
+    - SNAP
       - Sends a recent snapshot from the PopCam.
-    STREAM
+    
+    - STREAM
       - Sends URL to live stream (works on local connection only).
-    UPLOADS
+    
+    - UPLOADS
       - Sends URL to view all photos and videos captured.
       
  * Pops Weather Utility
   
-    “What’s the weather”
+    - “What’s the weather”
       - Sends weather at Pops’ coop.”
 
-    “What’s the forecast”
+    - “What’s the forecast”
       - Sends 5-day forecast of weather at Pops’ coop.
-      “What’s the weather in [city]” / “What’s the weather in [city, territory]”
+    - “What’s the weather in [city]” / “What’s the weather in [city, territory]”
       - Attempts to get weather data for the city specified and replies with weather or notifies that
-      the location was not found. Limited right now due to the small size of my data file that it searches
-      from.
+        the location was not found. Limited right now due to the small size of my data file that it searches
+        from.
       - "What’s the weather in [city, territory]” is a better format. (If Morristown, New Jersey were first in
-      list and you asked for weather in Morristown expecting Morristown, TN, you would get the weather
-      for Morristown, NJ instead.
+        list and you asked for weather in Morristown expecting Morristown, TN, you would get the weather
+        for Morristown, NJ instead.
 
-    “What’s the forecast in [city]” / “What’s the forecast in [city, territory]”
+    - “What’s the forecast in [city]” / “What’s the forecast in [city, territory]”
       - Attempts to get 5-day weather forecast data for the city specified and replies with forecast or
-      notifies that the location was not found. Limited right now due to the small size of my data file
-      that it searches from.
+        notifies that the location was not found. Limited right now due to the small size of my data file
+        that it searches from.
       - Again, specifying [city, territory] will be more accurate.
 
  * Talk to Popcorn. A few things to try:
