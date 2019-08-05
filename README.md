@@ -64,16 +64,16 @@ Messaging the Pops Bot in your GroupMe group:
       that it searches from.
       - Again, specifying [city, territory] will be more accurate.
 
-   * Talk to Popcorn. A few things to try:
-      - ”@pops What is the meaning of life?”
-      - ”@pops How are you?”
-      - ”@pops What’s up”
-      - ”@pops What are you doing?”
-      - ”@pops Where are you?”
-      - ”@pops How’s the weather?”
-      - ”@pops Tell me about your business”
-      - ”@pops Where are you from?”
-      - ”@pops Should I ___ or ___?”
-      - ”@pops Tell me a joke”
-      - ”@pops Tell me a proverb.”
-      - ”@pops Give me wisdom.”
+ * Talk to Popcorn. A few things to try:
+  - ”@pops What is the meaning of life?”
+  - ”@pops How are you?”
+  - ”@pops What’s up”
+  - ”@pops What are you doing?”
+  - ”@pops Where are you?”
+  - ”@pops How’s the weather?”
+  - ”@pops Tell me about your business”
+  - ”@pops Where are you from?”
+  - ”@pops Should I ___ or ___?”
+  - ”@pops Tell me a joke”
+  - ”@pops Tell me a proverb.”
+  - ”@pops Give me wisdom.”
