@@ -79,4 +79,3 @@ Messaging the Pops Bot in your GroupMe group:
     - ”@pops Tell me a joke”
     - ”@pops Tell me a proverb.”
     - ”@pops Give me wisdom.”
-    - "@pops How's the weather?"
