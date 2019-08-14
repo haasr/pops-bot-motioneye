@@ -43,9 +43,6 @@ def create_forecast_message(weather_response):
 
             + '\n\n' + weather_response['properties']['periods'][7]['name'] + ': '
             + temp_strings[7] + weather_response['properties']['periods'][7]['detailedForecast'] # Next day temp + forecast.
-
-            + '\n\n' + weather_response['properties']['periods'][9]['name'] + ': '
-            + temp_strings[9] + weather_response['properties']['periods'][9]['detailedForecast'] # Next day temp + forecast.
             )
 
     else: # Correctly display forecast for 6am to 5pm.
@@ -64,9 +61,6 @@ def create_forecast_message(weather_response):
 
             + '\n\n' + weather_response['properties']['periods'][8]['name'] + ': '
             + temp_strings[8] + weather_response['properties']['periods'][8]['detailedForecast'] # Next day temp + forecast.
-
-            + '\n\n' + weather_response['properties']['periods'][10]['name'] + ': '
-            + temp_strings[10] + weather_response['properties']['periods'][10]['detailedForecast'] # Next day temp + forecast.
         )
 
     return forecast_msg
