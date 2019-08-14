@@ -15,7 +15,7 @@ ACCESS_TOKEN = 'INSERT ACCESS TOKEN HERE'
 POST_URL = 'https://api.groupme.com/v3/bots/post'
 UPLOADS_URL = 'INSERT DROPBOX OR DRIVE URL TO UPLOADS HERE'
 MOTIONEYE_IP = 'INSERT IP ADDRESS OF MOTIONEYE CAM HERE'
-THIS_DEVICE_IP = 'INSERT IP ADDRESS OF THIS DEVICE' # Should be your public IP address.
+THIS_DEVICE_IP = 'INSERT IP ADDRESS OF THIS DEVICE' # Should be your public IP address if using server, otherwise local.
 INDEX_LOCATION = 'INSERT PATH WHERE SERVER INDEX PAGE IS STORED' # Must be on the machine you plan to run this program.
 # I run Apache server on my Pi. The index is in '/var/www/html'. You may need to modify the directory
 # to give you write permission if you don't already have it. 
