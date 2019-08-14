@@ -17,7 +17,7 @@ MOTIONEYE_IP = 'INSERT IP ADDRESS OF MOTIONEYE CAM HERE'
 THIS_DEVICE_IP = 'INSERT IP ADDRESS OF THIS DEVICE' # Should be a static IP address.
 INDEX_LOCATION = 'INSERT PATH WHERE SERVER INDEX PAGE IS STORED' # Must be on the machine you plan to run this program.
 # I run Apache server on my Pi. The index is in '/var/www/html'. You may need to modify the directory
-# to give you write permission if you don't already have it.
+# to give you write permission if you don't already have it. 
 
 request_params = { 'token': ACCESS_TOKEN }
 
@@ -31,23 +31,20 @@ def send_reply(reply, message):
 
 
 def send_snap_reply(message):
-    # GroupMe's API seemed to cache the image data from the URL i gave it 
-    # (for example, http://192.168.1.104/picture/1/current/') which would 
-    # change the image data it contained to be a current snapshot from the
-    # MotionEye cam but as long as the same URL was used, it posted the
-    # same image. Solution was set up an apache server on my RPi (hosting
-    # the bot) to download the image from the link above to a random name 
-    # in the index root dir (to make URL unique) and pass that to GroupMe
-    # in POST request.
-    
+
     # Location of web server's index page and dir where images are stored
     # so they can be accessed by a local url.
     test = os.listdir(INDEX_LOCATION)
 
+    i = 0
     for item in test:
-        # Remove all old jpegs from previous downloads.
-        if (item.endswith('.jpeg')): 
-            os.remove(os.path.join(image_dir, item))
+        i += 1
+
+    if (i > 49): # Clear out folder every 50 images.
+        for item in test:
+            # Remove all old jpegs from previous downloads.
+            if (item.endswith('.jpeg')): 
+                os.remove(os.path.join(INDEX_LOCATION, item))
 
     # Goal here is basically to create an image name that will never be used again.
     # Workaround for groupme api caching first image from url and never sending
@@ -152,3 +149,4 @@ def main():
 
         except:
             print('An error occurred')
+
