@@ -52,7 +52,7 @@ def send_snap_reply(message):
     # new image even after content in 'current.jpeg', for example, had changed.
     filename = str(random.randint(0, 90000000)) + str(random.randint(0, 90000000)) + '.jpeg'
     f = open('/var/www/html/' + filename, 'wb')
-    f.write(requests.get('http://192.168.1.104/picture/1/current/').content)
+    f.write(requests.get('http://' + MOTIONEYE_IP + '/picture/1/current/').content)
     f.close()
 
     post_params = { 'bot_id': BOT_ID, 'text': '' }
