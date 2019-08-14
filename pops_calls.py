@@ -1,12 +1,8 @@
 # pops_calls.py
 
-# Basic responses to conversational messages to Pops bot.
-# Answers basic questions like "whats up", "how are you",
-# "what are you doing", etc. and responds to basic commands
-# like "tell me a joke". Pops also has a backstory.
-
 import re
 import random
+from pops_utils import weather_util
 
 JOKES = [
     ' you were born...', 
@@ -21,6 +17,23 @@ JOKES = [
     ' If I had a face like yours, I\'d sue my parents',
     ' I called the Complaint Department and nobody answered. Now I have' +
     ' something else to complain about!'
+]
+
+PROVERBS = [
+    'The too-lazy do a few things poorly; the too-busy do many things poorly.',
+    'If you store food in your fridge, it may go bad. If you store food in your ' +
+    'belly, you don\'t need a fridge.',
+    'The faster one eats, the better the food tastes.',
+    'Rome wasn\'t built in a day, but that\'s only because I wasn\'t there.',
+    'When you are lacking in motivation, you are lacking in food.',
+    'Better is the enemy of good and I am the enemy of squirrels!',
+    'What is the meaning of life? I ate it while you were contemplating.',
+    'Once you exceed your life limit, you cannot upgrade your plan.'
+    'Life is noodles. Noodles is life.'
+    'Nothing is in control and there\'s nothing you can do about it.',
+    'There are 2 types of people: those who can interpret incomplete data sets.',
+    'Someone told me the secret to happiness is to be grateful. ' +
+    'I replied \"Thanks for nothing!\"'
 ]
 
 BUSINESS_INFO = [
@@ -53,7 +66,7 @@ WHATS_UP = [
     ' rocky mountain climbing.',
     ' exporting luxury cars!',
     ' developing Skynet!!',
-    ' travelling abroad, what are you doing?',
+    ' travelling abroad, what are you doing?'
 ]
 
 MOOD = [
@@ -80,8 +93,6 @@ LOCATION = [
     ' I\'m watching a production of L\'Orfeo at the Teatro Alla Scalla in Milan.' +
     ' I\'m a better opera singer than these amateurs.',
 
-    ' I\'m jus chillin over here in Morristown with my homies.',
-
     ' I\'m meeting the FC Barcelona team for soccer practice in Camp Nou, rn.' +
     'How about you?',
 
@@ -96,6 +107,14 @@ LOCATION = [
     'Ireland. The Popsinator needs a new golf course!! Where r u?',
 
     ' skiing in Ontario rn. Too cold up here!'
+]
+
+WEATHER = [
+    'Currently freeze your beak off weather!! ',
+    'Sweater weather ',
+    'Temperate. Just the way Pops likes it ',
+    'POPS-sicle weather ',
+    'I\'m trying not to become a rotisserie '
 ]
 
 SHOWS = [
@@ -153,7 +172,7 @@ FILLER_PHRASES = [
     'jjkkkkkkkkkkkkkkkkkkjjsdfsrgss',
     'oOOOOOoh foooodS!!dsaf',
     'Sorry, I just keep thinking about PEanuT butter. PEnaut ButteR@!#',
-    'Were you saying something?'
+    'Were you saying something?',
     'What were you saying? I couldn\'t read your comment over my popcorn' +
     ' munching!!',
     'You will never know the Pop\'s secret!!',
@@ -165,11 +184,9 @@ FILLER_PHRASES = [
 ]
 
 def get_reply(msg):
-    
-    msg_text = msg['text'].lower()
-    
-    # Once a reply is created, break out of loop. Return reply.
+
     while True:
+        msg_text = msg['text'].lower()
 
         # search all non-regex strings first
         if ('meaning of life' in msg_text):
@@ -241,6 +258,14 @@ def get_reply(msg):
             reply = YES_OR_NO[random.randint(0, (len(YES_OR_NO) - 1))] + '@' + msg['name']
             break
 
+        elif (('wise' in msg_text) or ('wisdom' in msg_text)):
+            reply = PROVERBS[random.randint(0, (len(PROVERBS) - 1))]
+            break
+
+        elif ('i think' in msg_text):
+            reply = '@' + msg['name'] + ', you\'re certainly entitled to that opinion.'
+            break
+
         elif ('bot' in msg_text):
             reply = 'You will never know the Pop\'s Secret!!'
             break
@@ -259,6 +284,11 @@ def get_reply(msg):
         str_search = re.search('tell.*joke', msg_text)
         if (str_search):
             reply = '@' + msg['name'] + JOKES[random.randint(0, (len(JOKES) - 1))] 
+            break
+
+        str_search = re.search('tell.*proverb', msg_text)
+        if (str_search):
+            reply = PROVERBS[random.randint(0, (len(PROVERBS) - 1))]
             break
 
         str_search = re.search('tell.*truth', msg_text)
@@ -286,23 +316,43 @@ def get_reply(msg):
             reply = '@' + msg['name'] + BUSINESS_INFO[2]
             break
 
-        str_search = re.search('.*what.*you do', msg_text)
-        if (str_search):
-            reply = BUSINESS_INFO[1]
-            break
-
         str_search = re.search('.*what.*you doing.*', msg_text)
         if (str_search):
             reply = '@' + msg['name'] + WHATS_UP[random.randint(0, (len(WHATS_UP) - 1))]
             break
 
-        if ('.*?' in msg_text):
-            reply = YES_OR_NO[random.randint(0, (len(YES_OR_NO) - 1))] + '@' + msg['name']
-
-        # If none of the above generated a response, select a random filler phrase.
-        else:
-            reply = FILLER_PHRASES[random.randint(0, (len(FILLER_PHRASES) - 1))]
+        elif ('are you' in msg_text): # needed this after question, 'what are you doing?'
+            reply = YES_OR_NO[random.randint(0, (len(YES_OR_NO) - 1))]
             break
+
+        str_search = re.search('.*what.*you do', msg_text)
+        if (str_search):
+            reply = BUSINESS_INFO[1]
+            break
+
+        str_search = re.search('how.*s.*weather', msg_text)
+        if (str_search):
+            temp = weather_util.get_default_temp()
+            
+            if (temp < 33):
+                reply = WEATHER[0] + '@' + msg['name']
+            elif (temp < 50):
+                reply = WEATHER[1] + '@' + msg['name']
+            elif (temp < 76):
+                reply = WEATHER[2] + '@' + msg['name']
+            elif (temp < 86):
+                reply = WEATHER[3] + '@' + msg['name']
+            else:
+                reply = WEATHER[4] + '@' + msg['name']
+            
+            break
+    
+        if ('?' in msg_text):
+            reply = YES_OR_NO[random.randint(0, (len(YES_OR_NO) - 1))] + '@' + msg['name']
+            break
+            
+        reply = FILLER_PHRASES[random.randint(0, (len(FILLER_PHRASES) - 1))]
+        break
 
     return reply
 
