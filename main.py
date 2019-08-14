@@ -120,12 +120,11 @@ def main():
 
                         # I have an IFTTT webhook which when called by MotionEye, posts 'ALERT!!...'
                         # when motion is detected. Then my bot knows to post a current snapshot.
-                        elif ('ALERT!!' in message['text']):
-                            send_snap_reply(message)
-                            break
-
-                        elif (message['text'] == 'SNAP'):
-                            send_snap_reply(message)
+                        elif ('ALERT!!' in message['text']) or (message['text'] == 'SNAP'):
+                            attempt_send = Process(target = send_snap_reply(message))
+                            attempt_send.start()
+                            attempt_send.join(timeout = 45) # Max time function can run is 45 secs.
+                            attempt_send.terminate()        # Terminate if still running after 45.
                             break
 
                         elif (message['text'] == 'STREAM'):
