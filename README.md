@@ -1,7 +1,7 @@
 # pops-bot-motioneye
 A rudimentary Python program which utilizes a GroupMe bot to make basic conversation and provide functionality from a MotionEyeOS camera on LAN by communicating with the GroupMe API and MotionEye host through GET and POST requests using the Python requests library. My cam is set up to monitor my pet chicken --Popcorn-- and the responses returned from the GroupMe bot are meant to immitate her personality.
 
-My code is based off of a tutorial from http://sweb.uky.edu/~jtba252/index.php/2017/09/13/how-to-write-a-groupme-bot-using-python/ which I greatly appreciate.
+My code is inspired by a tutorial from http://sweb.uky.edu/~jtba252/index.php/2017/09/13/how-to-write-a-groupme-bot-using-python/ which I greatly appreciate.
 
 The CSV file which my weather_util module uses to get the coordinates of a city can be found at https://simplemaps.com/data/world-cities and is licensed under CC BY 4.0. View the license in "./pops_utils/weather_data/license.html"
 
