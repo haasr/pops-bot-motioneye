@@ -2,7 +2,7 @@ import csv
 import re
 import json
 import requests
-
+from datetime import datetime
 
 DEFAULT_LOCATION_NAME = 'Johnson City'
 DEFUALT_LOCATION_COORDS = ['36.3406', '-82.3804']
@@ -23,10 +23,12 @@ def parse_location_data():
 # Called on by send_forecast_in() or send_forecast_here() to create and return a formatted forecast message.
 def create_forecast_message(weather_response):
     temp_strings = []
-    for i in range(0, 6):
+    for i in range(0, 11):
         temp_strings.append((str)(weather_response['properties']['periods'][i]['temperature']) + ' degrees. ')
 
-    return (
+    current_hour = datetime.now().hour
+    if (current_hour < 6) or (current_hour > 17): # Correctly display forecast for 6pm to 5am.
+        forecast_msg = (
             '\n\n' + weather_response['properties']['periods'][0]['name'] + ': '
             + temp_strings[0] + weather_response['properties']['periods'][0]['detailedForecast'] # Current day temp + forecast.
 
@@ -34,17 +36,41 @@ def create_forecast_message(weather_response):
             + temp_strings[1] + weather_response['properties']['periods'][1]['detailedForecast'] # Next day temp + forecast.
 
             + '\n\n' + weather_response['properties']['periods'][3]['name'] + ': '
-            + temp_strings[2] + weather_response['properties']['periods'][3]['detailedForecast'] # Next day temp + forecast.
+            + temp_strings[3] + weather_response['properties']['periods'][3]['detailedForecast'] # Next day temp + forecast.
 
             + '\n\n' + weather_response['properties']['periods'][5]['name'] + ': '
-            + temp_strings[3] + weather_response['properties']['periods'][5]['detailedForecast'] # Next day temp + forecast.
+            + temp_strings[5] + weather_response['properties']['periods'][5]['detailedForecast'] # Next day temp + forecast.
 
             + '\n\n' + weather_response['properties']['periods'][7]['name'] + ': '
-            + temp_strings[4] + weather_response['properties']['periods'][7]['detailedForecast'] # Next day temp + forecast.
+            + temp_strings[7] + weather_response['properties']['periods'][7]['detailedForecast'] # Next day temp + forecast.
 
             + '\n\n' + weather_response['properties']['periods'][9]['name'] + ': '
-            + temp_strings[5] + weather_response['properties']['periods'][9]['detailedForecast'] # Next day temp + forecast.
+            + temp_strings[9] + weather_response['properties']['periods'][9]['detailedForecast'] # Next day temp + forecast.
             )
+
+    else: # Correctly display forecast for 6am to 5pm.
+        forecast_msg = (
+            '\n\n' + weather_response['properties']['periods'][0]['name'] + ': '
+            + temp_strings[0] + weather_response['properties']['periods'][0]['detailedForecast'] # Current day temp + forecast.
+
+            + '\n\n' + weather_response['properties']['periods'][2]['name'] + ': '
+            + temp_strings[2] + weather_response['properties']['periods'][2]['detailedForecast'] # Next day temp + forecast.
+
+            + '\n\n' + weather_response['properties']['periods'][4]['name'] + ': '
+            + temp_strings[4] + weather_response['properties']['periods'][4]['detailedForecast'] # Next day temp + forecast.
+
+            + '\n\n' + weather_response['properties']['periods'][6]['name'] + ': '
+            + temp_strings[6] + weather_response['properties']['periods'][6]['detailedForecast'] # Next day temp + forecast.
+
+            + '\n\n' + weather_response['properties']['periods'][8]['name'] + ': '
+            + temp_strings[8] + weather_response['properties']['periods'][8]['detailedForecast'] # Next day temp + forecast.
+
+            + '\n\n' + weather_response['properties']['periods'][10]['name'] + ': '
+            + temp_strings[10] + weather_response['properties']['periods'][10]['detailedForecast'] # Next day temp + forecast.
+        )
+
+    return forecast_msg
+
 
 # Create and return the current weather info for the default location.
 def send_weather_here():
@@ -161,6 +187,7 @@ def send_forecast_in(message):
 def get_weather(msg):
     msg_text = msg.lower()
 
+    reply = ''
     while True:
         str_search = re.search('tell.*weather in.*', msg_text)
         if (str_search):
@@ -190,6 +217,7 @@ def get_weather(msg):
 def get_forecast(msg):
     msg_text = msg.lower()
 
+    reply = ''
     while True:
         str_search = re.search('tell.*forecast in.*', msg_text)
         if (str_search):
