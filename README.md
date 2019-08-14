@@ -3,7 +3,7 @@ A rudimentary Python program which utilizes a GroupMe bot to make basic conversa
 
 My code is inspired by a tutorial from http://sweb.uky.edu/~jtba252/index.php/2017/09/13/how-to-write-a-groupme-bot-using-python/ which I greatly appreciate.
 
-The CSV file which my weather_util module uses to get the coordinates of a city can be found at https://simplemaps.com/data/world-cities and is licensed under CC BY 4.0. View the license in "./pops_utils/weather_data/license.html"
+The CSV file which my weather_util module uses to get the coordinates of a city can be found at https://simplemaps.com/data/world-cities and is licensed under CC BY 4.0. View the attribution in "./pops_utils/weather_data/license.html"
 
 Updates:
 
