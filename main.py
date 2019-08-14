@@ -33,7 +33,8 @@ def send_reply(reply, message):
 def send_snap_reply(message):
 
     # Location of web server's index page and dir where images are stored
-    # so they can be accessed by a local url.
+    # so they can be accessed by url 'public_ip_address/image_name.jpeg'
+    # for example (XX.XXX.XX.XX/0002021312312312.jpeg)
     test = os.listdir(INDEX_LOCATION)
 
     i = 0
