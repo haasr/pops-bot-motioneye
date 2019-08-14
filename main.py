@@ -150,4 +150,6 @@ def main():
 
         except:
             print('An error occurred')
+            
+main()
 
