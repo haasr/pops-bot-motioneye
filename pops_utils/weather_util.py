@@ -27,7 +27,7 @@ def create_forecast_message(weather_response):
         temp_strings.append((str)(weather_response['properties']['periods'][i]['temperature']) + ' degrees. ')
 
     current_hour = datetime.now().hour
-    if (current_hour < 6) or (current_hour > 17): # Correctly display forecast for 6pm to 5am.
+    if (current_hour < 6) or (current_hour > 17): # Correctly display forecast for 6am to 12pm.
         forecast_msg = (
             '\n\n' + weather_response['properties']['periods'][0]['name'] + ': '
             + temp_strings[0] + weather_response['properties']['periods'][0]['detailedForecast'] # Current day temp + forecast.
@@ -43,9 +43,12 @@ def create_forecast_message(weather_response):
 
             + '\n\n' + weather_response['properties']['periods'][7]['name'] + ': '
             + temp_strings[7] + weather_response['properties']['periods'][7]['detailedForecast'] # Next day temp + forecast.
+
+            + '\n\n' + weather_response['properties']['periods'][9]['name'] + ': '
+            + temp_strings[9] + weather_response['properties']['periods'][9]['detailedForecast'] # Next day temp + forecast.
             )
 
-    else: # Correctly display forecast for 6am to 5pm.
+    else: # Correctly display forecast for 6pm to 5am.
         forecast_msg = (
             '\n\n' + weather_response['properties']['periods'][0]['name'] + ': '
             + temp_strings[0] + weather_response['properties']['periods'][0]['detailedForecast'] # Current day temp + forecast.
@@ -61,11 +64,14 @@ def create_forecast_message(weather_response):
 
             + '\n\n' + weather_response['properties']['periods'][8]['name'] + ': '
             + temp_strings[8] + weather_response['properties']['periods'][8]['detailedForecast'] # Next day temp + forecast.
+
+            + '\n\n' + weather_response['properties']['periods'][10]['name'] + ': '
+            + temp_strings[10] + weather_response['properties']['periods'][10]['detailedForecast'] # Next day temp + forecast.
         )
 
     return forecast_msg
 
-
+    
 # Create and return the current weather info for the default location.
 def send_weather_here():
     weather_response = (requests.get('https://api.weather.gov/points/' + DEFUALT_LOCATION_COORDS[0] 
@@ -97,8 +103,9 @@ def send_weather_in(message):
             if (row[0].lower() in split_str[0]) and (row[3].lower() in split_str[1]):
                 row_found = True
                 break 
-            elif (row[0].lower() in split_str[0]) and (row[6].lower in split_str):
+            elif (row[0].lower() in split_str[0]) and (row[6].lower() in split_str[1]):
                 row_found = True
+                break
 
     # else, only the city was specified. If two of the same cities, it will return forecast
     # of the first one it came accross in LOCATION_DATA.
@@ -107,6 +114,7 @@ def send_weather_in(message):
             if (row[0].lower() in place):
                 row_found = True
                 break
+
     
     if (row_found):
 
@@ -150,8 +158,9 @@ def send_forecast_in(message):
             if (row[0].lower() in split_str[0]) and (row[3].lower() in split_str[1]):
                 row_found = True
                 break 
-            elif (row[0].lower() in split_str[0]) and (row[6].lower in split_str):
+            elif (row[0].lower() in split_str[0]) and (row[6].lower() in split_str[1]):
                 row_found = True
+                break
     # else, only the city was specified. If two of the same cities, it will return forecast
     # of the first one it came accross in LOCATION_DATA.
     else:
