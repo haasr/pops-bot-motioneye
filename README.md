@@ -21,7 +21,7 @@ Requirements:
   - A GroupMe bot in your selected GroupMe group. You can create bots by registering an account on "https://dev.groupme.com/".
     This is also where you access your access token, bot ID, and group ID needed in "main.py" after you have created a bot.
   
-  - A MotionEyeOS camera connected on the same LAN as the machine running the program.
+  - A MotionEyeOS camera connected on LAN or world-wide-web.
   
   - A web server needs to be running on the same machine that you are running the program to make use of the "send_snap_reply" function in "main.py". I use an Apache server on my Raspberry Pi. Of course, the device running the server must have a static IP address so you can forward the HTTP/tcp port to the server (in my experience, https did not work). The server is only for the functionality of posting images in the group; if you don't want to set up a web server, simply comment or delete out lines 33-66 and lines 125-131 in "main.py". 
 
