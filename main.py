@@ -127,9 +127,13 @@ def main():
                             attempt_send.join(timeout = 45) # Max time function can run is 45 secs.
                             attempt_send.terminate()        # Terminate if still running after 45.
                             break
-
+                            
+                        # You can forward your MotionEye cam's streaming port (available in the
+                        # admin settings) and instead of MOTIONEYE_IP, replace this with your
+                        # public IP and the port (i.e. 'XX.XXX.XX.XX:8080') so you can view the 
+                        # stream everywhere instead of just on LAN.
                         elif (message['text'] == 'STREAM'):
-                            send_reply(MOTIONEYE_IP, message)
+                            send_reply(MOTIONEYE_IP, message) 
                             break
 
                         elif (message['text'] == 'UPLOADS'):
