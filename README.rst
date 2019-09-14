@@ -8,7 +8,7 @@ API through the requests library. The bot's responses represent the
 personality -- and intelligence -- of my pet chicken, Popcorn, AKA Pops.
 
 The CSV file which my weather_util module uses to get the coordinates
-of a city can be found at https://simplemaps.com/data/world-cities and
+of a city can be found at https://simplemaps.com/data/us-cities and
 is licensed under CC BY 4.0. All the text in the original file was
 converted to lowercase for this project. View the license attribution
 in "motioneyebot/data/csv_file_license.html".
@@ -198,26 +198,23 @@ Pops Weather Utility (US locations only)
       - Sends 5-day forecast of weather at Pops’ coop.
 
     - “What’s the weather in [city]” / “What’s the weather in
-      [city, territory]”
+      [city, state or state ID]”
 
       - Attempts to get weather data for the city specified and replies
         with weather or notifies that the location was not found.
 
-      - "What’s the weather in [city, territory]” is a better format.
+      - "What’s the weather in [city, state or state ID]” is a better format.
         (If Morristown, New Jersey were first in the list and you asked
         for weather in Morristown expecting Morristown, TN, you would get
-        the weather for Morristown, NJ instead. You may also use an iso2
-        code for the territory (i.e. "What's the weather in London, GB").
+        the weather for Morristown, NJ instead.
 
     - “What’s the forecast in [city]” / “What’s the forecast in
-      [city, territory]”
+      [city, state or state ID]”
 
       - Attempts to get 5-day weather forecast data for the city specified
         and replies with forecast or notifies that the location was not found.
-        You may also use an iso2 code for the territory (i.e. "What's the
-        weather in Chicago, US").
 
-      - Again, specifying [city, territory] will be more accurate.
+      - Again, specifying [city, state or state ID] will be more accurate.
 
 Talk to Popcorn. A few things to try:
 -------------------------------------
