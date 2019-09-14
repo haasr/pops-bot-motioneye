@@ -8,7 +8,7 @@ with open("README.rst", "r") as readme:
 
 setup(
     name='motioneyebot',
-    version='0.1.1',
+    version='0.1.2',
     license='MIT',
     author='Ryan Haas',
     author_email='haasrr@etsu.edu',
