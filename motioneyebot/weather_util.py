@@ -10,13 +10,12 @@ DEFAULT_LOCATION_NAME = 'Johnson City'
 DEFUALT_LOCATION_COORDS = ['36.3406', '-82.3804']
 LOCATION_DATA = []
 
-# Read in location data from worldcities.csv.
-# In LOCATION_DATA row[0], is city name;  row[1] and [2] are lat. & long.;
-# row[4] is country code, row[6] is state/providence/territory.
+# LOCATION_DATA[0] = city, [1] = state name, [2] = state id
+# [6] = latitude [7] = longitude
+# Read in location data from uscitiesv1.5.csv.
 def parse_location_data():
     # Join the package's path with the data path to access config.
-    #this_dir = os.path.split(__file__)
-    csvfile = pkg_resources.resource_filename(__name__, 'data/worldcities.csv')
+    csvfile = pkg_resources.resource_filename(__name__, 'data/uscitiesv1.5.csv')
     with open(csvfile, 'r') as file_data:
         csv_reader = csv.reader(file_data)
 
@@ -128,23 +127,23 @@ def send_weather_in(message):
 
     row_found = False
     str_search = re.match('.*,.*', place)
-    # '.*,.*' means 'city, state/providence' or 'city, state/country' so both
+    # '.*,.*' means 'city, state' or 'city, state initials' so both
     # of these will be searched for in the for-loop.
     if (str_search):
         split_str = place.split(',', 1)
         for row in LOCATION_DATA:
             if ((row[0] in split_str[0])
-               and (row[4] in split_str[1])):
+               and (row[2] in split_str[1])):
                 city = row[0]
                 row_found = True
                 break
             elif ((row[0] in split_str[0])
-                 and (row[6]in split_str[1])):
+                 and (row[3]in split_str[1])):
                 row_found = True
                 break
 
     # else, only the city was specified. If two of the same cities, it will
-    # return forecast of the first one it came accross in LOCATION_DATA.
+    # return weather of the first one it came accross in LOCATION_DATA.
     else:
          for row in LOCATION_DATA:
             if (row[0] == place):
@@ -155,7 +154,7 @@ def send_weather_in(message):
     if (row_found):
 
         weather_response = (requests.get('https://api.weather.gov/points/'
-                         + row[1] + ',' + row[2] + '/forecast').json())
+                         + row[6] + ',' + row[7] + '/forecast').json())
 
         if not('status' in weather_response.keys()):
             current_weather = ((weather_response['properties']['periods'][0]
@@ -164,7 +163,7 @@ def send_weather_in(message):
                                                ['detailedForecast']))
 
             weather_msg = ('Weather for ' + row[0].capitalize() + ', '
-                           + row[6].capitalize() + ': ' + current_weather)
+                           + row[3].capitalize() + ': ' + current_weather)
 
     return weather_msg
 
@@ -193,17 +192,17 @@ def send_forecast_in(message):
 
     row_found = False
     str_search = re.match('.*,.*', place)
-    # '.*,.*' means 'city, state/providence' or 'city, state/country' so both
+    # '.*,.*' means 'city, state' or 'city, state initials' so both
     # of these will be searched for in the for-loop.
     if (str_search and ',' in place):
         split_str = place.split(',', 1)
         for row in LOCATION_DATA:
-            if ((row[0] in split_str[0]) # Try to match city, country.
-               and (row[4] in split_str[1])):
+            if ((row[0] in split_str[0]) # Try to match city, state initials.
+               and (row[2] in split_str[1])):
                 row_found = True
                 break
             elif ((row[0] in split_str[0]) # Try to match city, state.
-                 and (row[6] in split_str[1])):
+                 and (row[3] in split_str[1])):
                 row_found = True
                 break
     # else, only the city was specified. If two of the same cities, it will
@@ -218,7 +217,7 @@ def send_forecast_in(message):
     if (row_found):
 
         weather_response = (requests.get('https://api.weather.gov/points/'
-                         + row[1] + ',' + row[2] + '/forecast').json())
+                         + row[6] + ',' + row[7] + '/forecast').json())
 
         # When the response contains a 'status' this means an error occurred
         # (such as not having info about the coordinates specified),
@@ -227,7 +226,7 @@ def send_forecast_in(message):
         if not ('status' in weather_response.keys()):
             current_weather = create_forecast_message(weather_response)
             weather_msg = ('Weather for ' + row[0].capitalize() + ', '
-                           + row[6].capitalize() + ': ' + current_weather)
+                           + row[3].capitalize() + ': ' + current_weather)
 
     return weather_msg
 
