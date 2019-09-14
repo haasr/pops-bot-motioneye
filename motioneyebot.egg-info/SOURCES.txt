@@ -16,7 +16,6 @@ motioneyebot.egg-info/entry_points.txt
 motioneyebot.egg-info/not-zip-safe
 motioneyebot.egg-info/requires.txt
 motioneyebot.egg-info/top_level.txt
-motioneyebot/data/.~lock.worldcities.csv#
 motioneyebot/data/config.txt
 motioneyebot/data/csv_file_license.html
-motioneyebot/data/worldcities.csv
+motioneyebot/data/uscitiesv1.5.csv
