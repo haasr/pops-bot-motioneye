@@ -149,7 +149,7 @@ def main():
                             break
 
                         # Key words to get info from MotionEye camera;
-                        # popcam_calls handles these.
+                        # pops_calls handles these.
 
                         # I have an IFTTT webhook which when called by
                         # MotionEye, posts 'ALERT!!...' when motion is
