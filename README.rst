@@ -37,7 +37,7 @@ that you paste these items in a text editor buffer for later use.
 2) Install a web server on the machine that will run this program.
 ******************************************************************
 
-Below demonstrates how to install Apache in Linux, though any
+Below demonstrates how to install Apache in Debian Linux, though any
 web server will suffice.
 
 .. code:: bash
