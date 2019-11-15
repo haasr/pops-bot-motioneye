@@ -92,8 +92,9 @@ IP address as static. You will be asked to enter this IP address in
 the first time you run the program so you may want to record it as well.
 
 OPTIONAL: If you have specified a Dropbox or Google Drive folder for
-your MotionEye camera to upload content to, you may enter the URL in
-the 'UPLOADS_URL' field. Otherwise, you may leave this section blank.
+your MotionEye camera to upload content to, you may enter the URL 
+later on in the initial setup. Otherwise, you may leave this section 
+blank.
 
 
 ****************
