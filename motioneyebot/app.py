@@ -11,27 +11,27 @@ from motioneyebot import config_util
 from motioneyebot import pops_calls
 from motioneyebot import weather_util
 
-config_constants = []
+config_data = []
 
 # Join the package's path with the data path to access config.
 configfile = pkg_resources.resource_filename(__name__, 'data/config.txt')
 with open(configfile, 'r') as f:
     for i, line in enumerate(f):
-        # Parse user's string and store in config_constants[]:
+        # Parse user's string and store in config_data[]:
         if ('=' in line):
             split_str = line.split('=', 1)
             var = split_str[1].replace("'", '')
-            config_constants.append(re.sub(r'#.*', '', var).strip())
+            config_data.append(re.sub(r'#.*', '', var).strip())
 
-ACCESS_TOKEN = config_constants[0]
-BOT_ID = config_constants[1]
-GROUP_ID = config_constants[2]
-INDEX_LOCATION = config_constants[3]
-MOTIONEYE_IP = config_constants[4]
-PUBLIC_IP = config_constants[5]
-UPLOADS_URL = config_constants[6]
-BOT_NAME = config_constants[7]
-GROUP_NAME = config_constants[8]
+ACCESS_TOKEN = config_data[0]
+BOT_ID = config_data[1]
+GROUP_ID = config_data[2]
+INDEX_LOCATION = config_data[3]
+MOTIONEYE_IP = config_data[4]
+PUBLIC_IP = config_data[5]
+UPLOADS_URL = config_data[6]
+BOT_NAME = config_data[7]
+GROUP_NAME = config_data[8]
 
 POST_URL = 'https://api.groupme.com/v3/bots/post'
 
