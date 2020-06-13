@@ -30,7 +30,7 @@ setup(
         ],
     },
     package_data={
-        'motioneyebot': ['data/config.txt', 'data/csv_file_license.html', 'data/worldcities.csv']
+        'motioneyebot': ['data/config.txt', 'data/csv_file_license.html', 'data/uscitiesv1.5.csv']
     },
     include_package_data=True,
     python_requires='>=3.5',
