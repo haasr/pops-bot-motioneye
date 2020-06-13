@@ -20,6 +20,7 @@ setup(
     classifiers=[
         'Intended Audience :: Other Audience',
         'License :: OSI Approved :: MIT License',
+        'Environment :: Console',
         'Programming Language :: Python :: 3 :: Only'
     ],
     entry_points={
