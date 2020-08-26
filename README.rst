@@ -83,11 +83,9 @@ the first time.
 Security
 --------
 Since this setup involves exposing a device to the Internet, you
-will want to employ some security measures. For one, ensure
-that the Apache server's "/var/www/hmtl" directory does not have
-execute permission (octal value 1). Second, use a firewall such
+will want to employ some security measures For one, use a firewall such
 as UFW (https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
-and ensure that any ports you are not using are blocked. Last,
+and ensure that any ports you are not using are blocked. Second,
 use intrusion prevention software such as Fail2Ban
 (https://www.fail2ban.org/wiki/index.php/Main_Page).
 
