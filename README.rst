@@ -37,8 +37,7 @@ that you paste these items in a text editor buffer for later use.
 2) Install a web server on the machine that will run this program.
 ******************************************************************
 
-Below demonstrates how to install Apache in Debian Linux, though any
-web server will suffice.
+Below demonstrates how to install Apache in Debian Linux:
 
 .. code:: bash
 
@@ -81,6 +80,16 @@ in the form [IP]:[port] (i.e. 12.345.67.89:8000). This will be what
 you enter in the 6th step of setup upon executing the program for
 the first time.
 
+Security
+--------
+Since this setup involves exposing a device to the Internet, you
+will want to employ some security measures. For one, ensure
+that the Apache server's "/var/www/hmtl" directory does not have
+execute permission (octal value 1). Second, use a firewall such
+as UFW (https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
+and ensure that any ports you are not using are blocked. Last,
+use intrusion prevention software such as Fail2Ban
+(https://www.fail2ban.org/wiki/index.php/Main_Page).
 
 *******************************************************
 5) Configure the MotionEye camera's settings if needed.
